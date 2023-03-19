@@ -1,0 +1,48 @@
+.header-container
+    height: 64px
+    width: 76.3%
+    display: flex
+    position: absolute
+    left: 403px
+    top: 0
+    border-radius: 0
+    padding: 12px 24px 12px 24px
+    justify-content: space-between
+    background: #FFFFFF
+    border-bottom: 1px solid #C9D1D9
+    &-expanded
+        height: 64px
+        width: calc(100vw - 120px)
+        display: flex
+        position: absolute
+        top: 0
+        border-radius: 0
+        padding: 12px 24px 12px 24px
+        justify-content: space-between
+        background: #FFFFFF
+        border-bottom: 1px solid #C9D1D9
+    &-filter
+        cursor: pointer
+        margin: 16px 24px 16px 24px
+    &-title
+        width: 250px
+        height: 24px
+        margin: 20px 24px 20px 24px
+        display: flex
+        justify-content: space-between
+        position: fixed
+        transform: translateX(62px)
+        & > span
+            font-family: Inter, sans-serif
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 24px
+            color: #8B939E
+        :nth-child(3)
+            color: #21262E
+
+    &-search
+        position: absolute
+        right: 280px
+
