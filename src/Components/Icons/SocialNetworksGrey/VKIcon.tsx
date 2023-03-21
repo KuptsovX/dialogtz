@@ -1,10 +1,13 @@
 import {useState} from "react";
+import {useAppDispatch} from "../../../store/dispatchHook";
+import {addPlatform, removePlatform} from "../../../store/slices/messageSlice";
 
 //Написал здесь интерфейс на экспорт, чтобы не дублировать код в остальных иконках
 export interface IconPropsType {
     iconType: "filter" | "message"
 }
 export default function VKIcon({iconType}: IconPropsType) {
+    const dispatch = useAppDispatch()
     const [clicked, setClicked] = useState<boolean>(false)
     return (
         <>
@@ -12,7 +15,10 @@ export default function VKIcon({iconType}: IconPropsType) {
             iconType === "filter" ?
                 <>
                     {clicked ?
-                        <svg onClick={() => setClicked(!clicked)} width="28" height="28" viewBox="0 0 28 28" fill="none"
+                        <svg onClick={() => {
+                            setClicked(!clicked);
+                            dispatch(removePlatform('vk'))
+                        }} width="28" height="28" viewBox="0 0 28 28" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M1.75 12.95C1.75 9.02963 1.75 7.06945 2.51295 5.57207C3.18407 4.25493 4.25493 3.18407 5.57207 2.51295C7.06945 1.75 9.02963 1.75 12.95 1.75H15.05C18.9704 1.75 20.9306 1.75 22.4279 2.51295C23.7451 3.18407 24.8159 4.25493 25.487 5.57207C26.25 7.06945 26.25 9.02963 26.25 12.95V15.05C26.25 18.9704 26.25 20.9306 25.487 22.4279C24.8159 23.7451 23.7451 24.8159 22.4279 25.487C20.9306 26.25 18.9704 26.25 15.05 26.25H12.95C9.02963 26.25 7.06945 26.25 5.57207 25.487C4.25493 24.8159 3.18407 23.7451 2.51295 22.4279C1.75 20.9306 1.75 18.9704 1.75 15.05V12.95Z"
@@ -22,7 +28,10 @@ export default function VKIcon({iconType}: IconPropsType) {
                                 fill="white"/>
                         </svg> :
 
-                        <svg onClick={() => setClicked(!clicked)} width="28" height="28" viewBox="0 0 28 28" fill="none"
+                        <svg onClick={() => {
+                            setClicked(!clicked)
+                            dispatch(addPlatform('vk'))
+                        }} width="28" height="28" viewBox="0 0 28 28" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M1.75 12.95C1.75 9.02963 1.75 7.06945 2.51295 5.57207C3.18407 4.25493 4.25493 3.18407 5.57207 2.51295C7.06945 1.75 9.02963 1.75 12.95 1.75H15.05C18.9704 1.75 20.9306 1.75 22.4279 2.51295C23.7451 3.18407 24.8159 4.25493 25.487 5.57207C26.25 7.06945 26.25 9.02963 26.25 12.95V15.05C26.25 18.9704 26.25 20.9306 25.487 22.4279C24.8159 23.7451 23.7451 24.8159 22.4279 25.487C20.9306 26.25 18.9704 26.25 15.05 26.25H12.95C9.02963 26.25 7.06945 26.25 5.57207 25.487C4.25493 24.8159 3.18407 23.7451 2.51295 22.4279C1.75 20.9306 1.75 18.9704 1.75 15.05V12.95Z"

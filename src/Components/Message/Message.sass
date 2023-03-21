@@ -29,11 +29,23 @@
         flex-grow: 0
         margin-bottom: 16px
     &-info
+        &-header
+            margin-bottom: 8px
+            margin-top: 19px
+            font-family: Inter,sans-serif
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 20px
+            color: #21262E
+        &-icon
+            margin-right: 25px
         &-source
             display: flex
             align-items: center
             & > span
-                margin-left: 10px
+                width: fit-content
+
                 font-family: Inter, sans-serif
                 font-style: normal
                 font-weight: 400
@@ -41,12 +53,46 @@
                 line-height: 18px
                 text-align: right
                 color: #8B939E
+            &-new
+                &-expanded
+                    position: fixed
+                    left: 590px
+            &-expanded
+                display: flex
+                align-items: center
+                margin-bottom: 19px
+                & > span
+                    margin-left: 10px
+                    font-family: Inter, sans-serif
+                    font-style: normal
+                    font-weight: 400
+                    font-size: 14px
+                    line-height: 18px
+                    text-align: right
+                    color: #8B939E
+
+        &-text
+            margin-bottom: 16px
+            font-family: Inter, sans-serif
+            font-style: normal
+            font-weight: 400
+            font-size: 14px
+            line-height: 18px
+            color: #484F58
         &-tags
             display: flex
             align-items: center
         &-status
             display: flex
             align-items: center
+            height: 20px
+            & > p
+                margin-left: 10px
             &-reaction
                 margin-left: 522px
+                &-expand
+                    margin-left: 800px
 
+.break-line
+    width: 95%
+    border-top: 0.5px solid rgba(240, 246, 252,0.3)

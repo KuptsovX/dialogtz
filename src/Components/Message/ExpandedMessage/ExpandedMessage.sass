@@ -6,13 +6,48 @@
     gap: 24px
     position: absolute
     width: 620px
-    height: 968px
+    height: 800px
     background: #FFFFFF
     border-radius: 12px
     overflow-y: scroll
     &-info
+        &-source
+            display: flex
+            margin-bottom: 27px
+            &-platform
+                margin-left: 9.5px
+            &-date
+                margin-left: 300px
+                width: fit-content
+                height: 18px
+        &-header
+            font-family: Inter, sans-serif
+            font-style: normal
+            font-weight: 600
+            font-size: 16px
+            line-height: 20px
+            color: #21262E
         &-tags
             display: flex
             align-items: center
             margin-top: 28px
             margin-bottom: 28px
+        &-text
+            font-family: Inter,sans-serif
+            font-style: normal
+            font-weight: 400
+            font-size: 16px
+            line-height: 20px
+            text-align: justify
+            color: #484F58
+        &-status
+            display: flex
+            align-items: center
+            & > p
+                margin-left: 15px
+            &-reaction
+                margin-left: 400px
+        & >img
+            width: 600px
+            height: 400px
+            margin-bottom: 15px

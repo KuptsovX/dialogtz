@@ -5,43 +5,74 @@ import TagIcon from "../../Icons/TagIcon";
 import ThumbDownIcon from "../../Icons/ThumbDownIcon";
 import ThumbUpIcon from "../../Icons/ThumbUpIcon";
 import {useState} from "react";
+import OKIcon from "../../Icons/SocialNetworksGrey/OKIcon";
+import InstagramIcon from "../../Icons/SocialNetworksGrey/InstagramIcon";
+import TelegramIcon from "../../Icons/SocialNetworksGrey/TelegramIcon";
+import YouTubeIcon from "../../Icons/SocialNetworksGrey/YouTubeIcon";
+import EyeIcon from "../../Icons/EyeIcon";
+import ClosedEyeIcon from "../../Icons/ClosedEyeIcon";
+import picture from '../../pic.jpg'
 
-export default function ExpandedMessage() {
+interface ExpandedProps {
+    id: number,
+    date: string,
+    title: string,
+    content: string,
+    imageUrl: string,
+    filters: [
+        {
+            id: number,
+            title: string
+        }
+    ],
+    platform: {
+        id: number,
+        name: string,
+        code: string
+    },
+    read: boolean
+    reaction: string,
+    isNew: boolean
+
+}
+
+export default function ExpandedMessage({filters,isNew, date, content, title, platform}: ExpandedProps) {
     const [isRead, setIsRead] = useState<boolean>(false)
     return (
         <div onClick={() => setIsRead(true)} className='expanded-message-container'>
             <div className='expanded-message-container-info'>
                 <div className='expanded-message-container-info-source'>
-                    <VKIcon  iconType="message"/>
-                    <span>26.07.2022 / 10:30</span>
+                    {platform.code === 'vk' ? <VKIcon iconType='message'/> : platform.code === 'ok' ?
+                        <OKIcon iconType='message' /> : platform.code === 'ig' ? <InstagramIcon iconType='message' /> : platform.code === 'tg' ?
+                            <TelegramIcon iconType='message'/> : <YouTubeIcon iconType='message'/>}
+                    <span className="expanded-message-container-info-source-platform">{platform.name}</span>
+                    <span className="expanded-message-container-info-source-date">{date}</span>
                 </div>
-                <div className='expanded-message-container-info-header'>Районы Москвы с хорошей экологией. Ну…с почти
-                    хорошей
-                    экологией
+                <div className='expanded-message-container-info-header'>
+                    {title}
                 </div>
                 <div className='expanded-message-container-info-tags'>
                     <TagIcon/>
-                    <Tag tagType="expanded" text='Москва'/>
-                    <Tag tagType="expanded" text='Москва'/>
+                    {filters.map((tag) => <Tag text={tag.title.slice(0 - 7)} tagType='expanded'
+                                               key={tag.id}/>).slice(0 - 3)}
 
                 </div>
-                <div className='expanded-message-container-info-text'>Реконструкция стадиона «Авангард» на шоссе
-                    Энтузиастов будет завершена до конца 2022 года. Об этом сообщил мэр Москвы Сергей Собянин в ходе
-                    осмотра работ по комплексной реконструкции стадиона и благоустройству территории спорткомплекса.
-                    «Сконцентрировали усилия, чтобы не растягивать долго ремонт, чтобы за год сделать. Это не к осени
-                    будет сделано. Это - до конца года. Надеюсь, что до конца года будет построен, чтобы в следующем
-                    году здесь можно было заниматься спортом», - сказал Собянин. Он напомнил, что проект реконструкции
-                    был внесен на голосование на портале «Активный гражданин». «Мы сделали проект, согласовали с
-                    жителями концепцию, проголосовали, 80% проголосовало «за». И приступили к реконструкции. Здесь будет
-                    все и зимой, и летом. И открытые поля, и футбольное поле, спортивные площадки, детские площадки. И
-                    закрытые павильоны, где будут заниматься и экстримом, и традиционными видами спорта: борьбой,
-                    спортивными танцами, теннисом», - отметил мэр. По его словам, стадион будет работать в зимнее время:
-                    здесь откроют пункт проката лыж, каток, будут проводить городские и районные мероприятия.
+                <img src={picture} alt='pic'/>
+                <div className='expanded-message-container-info-text'>{content}
 
                 </div>
-
+                <hr className='break-line'></hr>
                 <div className='expanded-message-container-info-status'>
-                    {isRead ? <p>Прочитано</p> : <p>Не прочитано</p>}
+                    {isRead || !isNew ?
+                        <>
+                            <EyeIcon />
+                            <p>Прочитано</p>
+                        </>
+                        :
+                        <>
+                            <ClosedEyeIcon />
+                            <p>Не прочитано</p>
+                        </>}
                     <div className='expanded-message-container-info-status-reaction'>
                         <ThumbDownIcon/>
                         <ThumbUpIcon/>
