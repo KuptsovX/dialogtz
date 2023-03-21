@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getMessages, getSortedMessages, loginRequest, searchMessages} from "../requests/messageRequest";
+import {getMessages, getSortedMessages, loginRequest, refreshRequest, searchMessages} from "../requests/messageRequest";
 
 
 export interface MessageType {
@@ -144,6 +144,9 @@ export const messageSlice = createSlice({
         })
         builder.addCase(searchMessages.fulfilled, (state, {payload}) => {
             state.messages = payload
+        })
+        builder.addCase(refreshRequest.fulfilled, (state, {payload}) => {
+            state.token.accessToken = payload
         })
     }
 })

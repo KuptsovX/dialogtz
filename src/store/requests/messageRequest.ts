@@ -50,27 +50,17 @@ export const getSortedMessages = createAsyncThunk(
            }: getMessagesParams) => {
         return await fetch(
             `http://localhost:8000/messages?pageNumber=${pageNumber}&pageSize=${pageSize}&isRead=${isRead}&reaction=${reaction}&platformCode=${platform}&dateFrom=${dateFrom}&dateTo=${dateTo}`, {
-            method: 'GET',
-        }).then(response => response.json())
+                method: 'GET',
+            }).then(response => response.json())
     }
 )
 
 export const searchMessages = createAsyncThunk(
     'message/search',
-    async ({searchData, refreshToken}: getMessagesParams) => {
-        return await fetch(`http://localhost:8000/messages?search=${searchData}`).then(response => {
-            if (!response.ok) {
-                fetch(' http://localhost:8000/auth/refresh',
-                    {
-                        method: "POST",
-                        headers: {
-                            'Authorization': `Bearer ${refreshToken}`,
-                            "Content-Type": "application/json",
-                        },
-                    })
-            }
-            return response.json()
-        })
+    async ({searchData}: getMessagesParams) => {
+        return await fetch(`http://localhost:8000/messages?search=${searchData}`).then(response =>
+            response.json()
+        )
     }
 )
 export const loginRequest = createAsyncThunk(
@@ -85,5 +75,15 @@ export const loginRequest = createAsyncThunk(
                 body: JSON.stringify(loginData)
             }).then(response => response.json())
 
+    }
+)
+
+export const refreshRequest = createAsyncThunk(
+    '/refresh',
+    async (refreshToken: string) => {
+        return await fetch('http://localhost:8000/auth/refresh',
+            {
+                body: JSON.stringify(refreshToken)
+            }).then(res => res.json())
     }
 )

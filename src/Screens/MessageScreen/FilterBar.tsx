@@ -68,8 +68,8 @@ export default function FilterBar({hideFilter, setHideFilter, setExpand}: Filter
                         >
                             <FormControlLabel value="allMessages" control={<Radio size='small'/>}
                                               label="Все сообщения"/>
-                            <FormControlLabel value="unread" control={<Radio size='small'/>} label="Не прочитано"/>
-                            <FormControlLabel value="read" control={<Radio size='small'/>} label="Прочитано"/>
+                            <FormControlLabel value="false" control={<Radio size='small'/>} label="Не прочитано"/>
+                            <FormControlLabel value="true" control={<Radio size='small'/>} label="Прочитано"/>
                         </RadioGroup>
                     </FormControl>
                 </div>
